@@ -8,7 +8,11 @@ var score = document.getElementById("score");
 var playerScore = 0;
 var pause = false;
 
-document.addEventListener("keydown",function(event){
+var xDown = null;                                                        
+var yDown = null;
+
+
+document.addEventListener("keydown", function(event){
     if(event.keyCode == 38)
     {
         player.style.transform = "scaleY(1)";
@@ -45,18 +49,72 @@ document.addEventListener("keydown",function(event){
     }
     player.style.left = playerLeft + "px";
     player.style.top = playerTop + "px";
-    var coins = document.getElementsByClassName("coin");
-    for(var i = 0;i < coins.length;i++)
-    {
-        var coin = coins[i];
-        if(touching(player, coin))
-        {
-            coin.remove();
-            playerScore++;
-            score.innerHTML = "score:" + playerScore;
-        }
-    }
+    touchingCoin();
 });
+
+document.addEventListener('touchstart', function (event) {
+    const firstTouch = getTouches(event)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;    
+}, false);
+
+document.addEventListener('touchmove', function (event) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = event.touches[0].clientX;                                    
+    var yUp = event.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            player.classList.add("playerJump");
+            playerLeft-=98;
+            setTimeout(function(){
+                player.classList.remove("playerJump");
+            },140);
+        } else {
+            player.classList.add("playerJump");
+            playerLeft+=98;
+            setTimeout(function(){
+                player.classList.remove("playerJump");
+            },140);
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            player.style.transform = "scaleY(1)";
+            player.classList.add("playerJump");
+            playerTop-=98;
+            setTimeout(function(){
+                player.classList.remove("playerJump");
+            },140);
+        } else { 
+            player.style.transform = "scaleY(1)";
+            player.classList.add("playerJump");
+            playerTop+=98;
+            setTimeout(function(){
+                player.classList.remove("playerJump");
+            },140);
+        }                                                                 
+    }
+
+    player.style.left = playerLeft + "px";
+    player.style.top = playerTop + "px";
+    touchingCoin();
+
+    /* reset values */
+    xDown = null;
+    yDown = null;      
+}, false);
+
+function getTouches(event) {
+    return event.touches ||             // browser API
+           event.originalEvent.touches; // jQuery
+  }                                                     
+  
 
 document.addEventListener("keydown", function(event){
     if(event.keyCode == 32)
@@ -242,4 +300,19 @@ function stop()
     clearInterval(moveRightVehicle2Interval);
     clearInterval(createVehicle3Interval);
     clearInterval(moveLeftVehicle3Interval);
+}
+
+function touchingCoin()
+{
+    var coins = document.getElementsByClassName("coin");
+    for(var i = 0;i < coins.length;i++)
+    {
+        var coin = coins[i];
+        if(touching(player, coin))
+        {
+            coin.remove();
+            playerScore++;
+            score.innerHTML = "score:" + playerScore;
+        }
+    }
 }
