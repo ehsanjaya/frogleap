@@ -1,0 +1,148 @@
+html, body 
+{
+    height: 100%;
+    overflow: hidden;
+}
+
+.container
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.header
+{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
+}
+
+.life
+{
+    display: flex;
+    text-transform: uppercase;
+    color: lightgreen;
+    font-size: 47px;
+    float: left;
+    width: 50%;
+}
+
+.score
+{
+    display: flex;
+    justify-content: flex-end;
+    text-transform: uppercase;
+    color: lightgreen;
+    font-size: 47px;
+    float: right;
+    padding-left: 50%;
+    width: 50%;
+}
+
+.player
+{
+    display: flex;
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    background-image: url("frog.png");
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.playerJump
+{
+    display: flex;
+    position: absolute;
+    background-image: url("frog-jump.png");
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.player-die
+{
+    display: flex;
+    position: absolute;
+    background-image: url("frog-die.png");
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.road 
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 80px;
+}
+
+.lane 
+{
+    display: flex;
+    background-image: url("lane.png");
+    width: 100%;
+    height: 270px;
+    background-size: contain;
+}
+
+.coin
+{
+    display: flex;
+    position: absolute;
+    background-image: url("coin.png");
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.motorcycle
+{
+    display: flex;
+    position: absolute;
+    background-image: url("motorcycle.png");
+    width: 300px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.car1
+{
+    display: flex;
+    position: absolute;
+    background-image: url("car1.png");
+    width: 300px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.car2
+{
+    display: flex;
+    position: absolute;
+    background-image: url("car2.png");
+    width: 300px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
